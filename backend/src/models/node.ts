@@ -10,4 +10,4 @@ const noteSchema = new Schema(
 
 type Note = InferSchemaType<typeof noteSchema>;
 
-export default model<Note>("Note");
+export default model<Note>("Note", noteSchema);
