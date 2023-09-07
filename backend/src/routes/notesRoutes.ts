@@ -4,6 +4,9 @@ import * as NotesController from "../controllers/notesControllers";
 const router = express.Router();
 
 router.get("/", NotesController.getNotes);
-router.post("/", NotesController.createNotes);
+
+router.get("/:noteId", NotesController.getNote);
+
+router.post("/", NotesController.createNote);
 
 export default router;
