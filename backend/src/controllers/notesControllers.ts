@@ -1,7 +1,7 @@
 import { RequestHandler } from "express";
-import NoteModel from "../models/nodeModels";
 import createHttpError from "http-errors";
 import mongoose from "mongoose";
+import NoteModel from "../models/nodeModels";
 
 export const getNotes: RequestHandler = async (req, res, next) => {
   try {
@@ -100,6 +100,27 @@ export const updateNote: RequestHandler<
     const updatedNote = await note.save();
 
     res.status(200).json(updatedNote);
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const deleteNote: RequestHandler = async (req, res, next) => {
+  const noteId = req.params.noteId;
+  try {
+    if (!mongoose.isValidObjectId(noteId)) {
+      throw createHttpError(400, "Invalid note Id");
+    }
+
+    const note = await NoteModel.findById(noteId).exec();
+
+    if (!note) {
+      throw createHttpError(404, "Note not found");
+    }
+
+    await note.deleteOne();
+
+    res.sendStatus(204);
   } catch (error) {
     next(error);
   }
