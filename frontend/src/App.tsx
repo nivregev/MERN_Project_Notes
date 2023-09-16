@@ -5,9 +5,12 @@ import { Note as NoteModel } from "./models/notes";
 import Note from "./components/notes";
 import styles from "./styles/NotePage.module.css";
 import * as NoteApi from "./network/notes_api";
+import AddNoteDialog from "./components/AddNoteDialog";
 
 function App() {
   const [notes, setNotes] = useState<NoteModel[]>([]);
+
+  const [showAddNoteDialog, setShowAddNoteDialog] = useState(false);
 
   useEffect(() => {
     async function loadNotes() {
@@ -24,6 +27,7 @@ function App() {
 
   return (
     <Container>
+      <Button onClick={() => setShowAddNoteDialog(true)}>Add new note</Button>
       <Row xs={1} md={2} xl={3} className="g-4">
         {notes.map((note) => (
           <Col key={note._id}>
@@ -31,6 +35,10 @@ function App() {
           </Col>
         ))}
       </Row>
+
+      {showAddNoteDialog && (
+        <AddNoteDialog onDismiss={() => setShowAddNoteDialog(false)} />
+      )}
     </Container>
   );
 }
