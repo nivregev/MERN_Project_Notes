@@ -4,6 +4,8 @@ import { Button, Container, Row, Col } from "react-bootstrap";
 import { Note as NoteModel } from "./models/notes";
 import Note from "./components/notes";
 import styles from "./styles/NotePage.module.css";
+import styleUtils from "./styles/Utils.module.css";
+
 import * as NoteApi from "./network/notes_api";
 import AddNoteDialog from "./components/AddNoteDialog";
 
@@ -27,7 +29,12 @@ function App() {
 
   return (
     <Container>
-      <Button onClick={() => setShowAddNoteDialog(true)}>Add new note</Button>
+      <Button
+        className={`mb-4 ${styleUtils.blockCenter}`}
+        onClick={() => setShowAddNoteDialog(true)}
+      >
+        Add new note
+      </Button>
       <Row xs={1} md={2} xl={3} className="g-4">
         {notes.map((note) => (
           <Col key={note._id}>
@@ -39,7 +46,10 @@ function App() {
       {showAddNoteDialog && (
         <AddNoteDialog
           onDismiss={() => setShowAddNoteDialog(false)}
-          onNoteSaved={() => {}}
+          onNoteSaved={(newNote) => {
+            setNotes([...notes, newNote]);
+            setShowAddNoteDialog(false);
+          }}
         />
       )}
     </Container>
