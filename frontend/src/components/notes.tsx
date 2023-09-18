@@ -42,3 +42,5 @@ const Note = ({ note, className, onDeleteNoteClicked }: NoteProps) => {
 };
 
 export default Note;
+
+// needs to learn more about the Titles that i can give instead of Html regular
