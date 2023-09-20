@@ -82,9 +82,8 @@ export const login: RequestHandler<
     }
 
     const user = await userModels
-
       .findOne({ userName: userName })
-      .select("+password +email")
+      .select("+userPassword +userEmail")
       .exec();
     if (!user) {
       throw createHttpError(401, "Invalid credentials");
@@ -97,6 +96,7 @@ export const login: RequestHandler<
     }
 
     req.session.userId = user._id;
+
     res.status(201).json(user);
   } catch (error) {
     next(error);
