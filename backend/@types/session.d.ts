@@ -5,3 +5,5 @@ declare module "express-session" {
     userId: mongoose.Types.ObjectId;
   }
 }
+
+//need to learn more about express-session
