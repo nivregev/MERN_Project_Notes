@@ -7,3 +7,4 @@ declare module "express-session" {
 }
 
 //need to learn more about express-session
+// start using terminal commands for github
