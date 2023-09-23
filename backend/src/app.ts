@@ -52,5 +52,3 @@ app.use((error: unknown, req: Request, res: Response, next: NextFunction) => {
 });
 
 export default app;
-
-//need to learn more about the numbers behind the status number and what the "errors"
