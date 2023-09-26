@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import logo from "./logo.svg";
 import { Button, Container, Row, Col, Spinner } from "react-bootstrap";
 import { Note as NoteModel } from "./models/notes";
 import Note from "./components/notes";
@@ -8,6 +7,8 @@ import styleUtils from "./styles/Utils.module.css";
 import * as NoteApi from "./network/notes_api";
 import AddEditNoteDialog from "./components/AddEditNoteDialog";
 import { FaPlus } from "react-icons/fa";
+import SignUpModel from "./components/SignUpModel";
+import LoginModal from "./components/LoginModal";
 
 function App() {
   const [notes, setNotes] = useState<NoteModel[]>([]);
@@ -99,6 +100,14 @@ function App() {
             setNoteToEdit(null);
           }}
         />
+      )}
+
+      {false && (
+        <SignUpModel onDismiss={() => {}} onSignUpSuccessful={() => {}} />
+      )}
+
+      {false && (
+        <LoginModal onDismiss={() => {}} onLoginSuccessful={() => {}} />
       )}
     </Container>
   );

@@ -1,4 +1,5 @@
 import { Note } from "../models/notes";
+import { User } from "../models/users";
 
 async function fetchData(input: RequestInfo, init?: RequestInit) {
   const response = await fetch(input, init);
@@ -9,6 +10,47 @@ async function fetchData(input: RequestInfo, init?: RequestInit) {
     const errorMessage = errorBody.error;
     throw Error(errorMessage);
   }
+}
+
+export async function getLoggedInUser(): Promise<User> {
+  const response = await fetchData("/api/users", { method: "GET" });
+  return response.json();
+}
+
+export interface SignUpCredentials {
+  userName: string;
+  userEmail: string;
+  userPassword: string;
+}
+
+export async function signUp(credentials: SignUpCredentials): Promise<User> {
+  const response = await fetchData("/api/users/signUp", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(credentials),
+  });
+  return response.json();
+}
+
+export interface LoginCredentials {
+  userName: string;
+  userPassword: string;
+}
+
+export async function logIn(credentials: LoginCredentials): Promise<User> {
+  const response = await fetchData("/api/users/login", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  return response.json();
+}
+
+export async function logOut() {
+  await fetchData("/api/users/logOut", { method: "POST" });
 }
 
 export async function fetchNotes(): Promise<Note[]> {
