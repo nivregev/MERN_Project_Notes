@@ -45,6 +45,7 @@ export async function logIn(credentials: LoginCredentials): Promise<User> {
     headers: {
       "Content-Type": "application/json",
     },
+    body: JSON.stringify(credentials),
   });
   return response.json();
 }
