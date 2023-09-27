@@ -22,7 +22,7 @@ const NavBar = ({
         <Navbar.Brand>Cool Notes App</Navbar.Brand>
         <Navbar.Toggle aria-controls="main-navbar"></Navbar.Toggle>
         <Navbar.Collapse id="main-navbar">
-          <Nav className="mx-auto">
+          <Nav className="ms-auto">
             {loggedInUser ? (
               <NavBarLoggedInView
                 user={loggedInUser}
