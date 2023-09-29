@@ -146,6 +146,10 @@ export const deleteNote: RequestHandler = async (req, res, next) => {
       throw createHttpError(404, "Note not found");
     }
 
+    if (!note.userId.equals(authenticatedUserId)) {
+      throw createHttpError(401, "You cannot access this note");
+    }
+
     await note.deleteOne();
 
     res.sendStatus(204);
