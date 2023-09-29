@@ -21,8 +21,6 @@ async function fetchData(input: RequestInfo, init?: RequestInit) {
           errorMessage
       );
     }
-
-    throw Error(errorMessage);
   }
 }
 
