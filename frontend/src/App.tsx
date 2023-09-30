@@ -79,3 +79,11 @@ function App() {
 }
 
 export default App;
+
+//-COMMENTS-
+
+// needs to add validation from-end and back-end.
+// needs to add more pages to the application.
+// consider adding more options to edit, or to make the App more special.
+// needs to work on the styles, bootstrap and self-styling with the css.
+// needs to Deploy the App to Github Pages.
